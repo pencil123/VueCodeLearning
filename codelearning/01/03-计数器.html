@@ -1,0 +1,47 @@
+<!--
+v-on 指令
+v-on:click  ->>>>  @click
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="counter">
+    <h3>计数器： {{counter}}</h3>
+<!-- 方法一：
+    <button v-on:click="counter++">+</button>
+    <button v-on:click="counter&#45;&#45;">-</button>-->
+
+<!--方法二：
+    <button v-on:click="add">+</button>
+    <button v-on:click="sub">-</button>-->
+
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#counter',
+        data : {
+            counter: 0
+        },
+        methods: {
+            add: function(){
+                console.log("zhixingle");
+                this.counter ++
+            },
+            sub: function () {
+                this.counter --
+            }
+        }
+    })
+</script>
+</body>
+</html>

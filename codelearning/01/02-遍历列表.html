@@ -1,0 +1,27 @@
+<!--v-for  指令介绍-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h3>{{message}}</h3>
+    <ol>
+        <li v-for="item in likes">{{item}}</li>
+    </ol>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el : '#app',
+        data : {
+            message: "hello World!",
+            likes : ["盗梦空间",'大话西游','哪吒']
+        }
+    })
+</script>
+</body>
+</html>
