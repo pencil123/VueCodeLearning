@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h4>{{message}}</h4>
+    <h4 v-once>{{message}}</h4>
+    <h4 v-html="url"></h4>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data : {
+            message: "Hello World!",
+            firstName: "Zhang",
+            lastName: "Jie",
+            counter: 100,
+            url: '<a href="https://baidu.com">百度</a>'
+        }
+    })
+</script>
+</body>
+</html>
