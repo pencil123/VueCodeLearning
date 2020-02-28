@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<h4 v-if="isShow">
+    {{message}};isShow is true
+</h4>
+<h4 v-else>isShow is false</h4>
+
+<h3>个人成绩：</h3>
+    <h4 v-if="score >= 90" style="color:red">{{score}}</h4>
+    <h4 v-else-if="score >=80" style="color:green">{{score}}</h4>
+    <h4 v-else style="color:black">{{score}}</h4>
+    <h4>{{result}}</h4>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "nice to meet you!",
+            isShow: true,
+            score: 90
+        },computed: {
+            result () {
+                let showMessage = '';
+                if(this.score >= 90){
+                    showMessage = '优秀'
+                } else if(this.score >= 80){
+                    showMessage = '良好'
+                } else {
+                    showMessage = '及格'
+                }
+                return showMessage
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
