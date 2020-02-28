@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <h4>{{firstName + ' ' + lastName}}</h4>
+    <h3>{{firstName}}  {{lastName}}</h3>
+    <h4>{{fullName}}</h4>
+    <h3>{{getFullName()}}</h3>
+    <h2>总价格： {{totalPrice}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data: {
+            firstName: "zhang",
+            lastName: "jun",
+            books : [
+                {id:100,name:"美女与野兽",price:10},
+                {id:101,name:"漂亮朋友",price:11},
+                {id:102,name:"基督山伯爵",price:12}
+            ]
+        },computed: {
+            fullName : function () {
+                return this.firstName + ' ' + this.lastName
+            },totalPrice: function () {
+                let price = 0
+                for (let i=0;i<this.books.length;i++){
+                    price += this.books[i].price
+                }
+                return price
+            }
+        },methods :{
+            getFullName : function () {
+                return this.firstName + ' ' + this.lastName
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
