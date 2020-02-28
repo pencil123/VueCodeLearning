@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+<!--作业需求: 点击列表中的哪一项, 那么该项的文字变成红色-->
+<!-- this 前不需要添加$-->
+
+<div id="app">
+    <h2>{{message}}</h2>
+    <ul>
+        <li v-for="m in like">{{m}}</li>
+          <!--这里使用的是小括号，不是大括号-->
+        <li :class="{active: numClick == index }" v-for="(m, index) in like" @click="btnClick(index)">{{m}}</li>
+    </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: '你好啊',
+            like: ['斗破苍穹','仙逆','唐朝小闲人'],
+            numClick: 0
+        },methods: {
+            btnClick: function (index) {
+                console.log(index)
+                this.numClick = index
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>

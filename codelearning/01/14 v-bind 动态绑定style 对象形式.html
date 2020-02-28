@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <h4 :style="{fontSize: VueFontSize + 'px'}">{{message}}</h4>
+    <h4 :style="{fontSize: VueFinalSize}">{{message}}</h4>
+    <h4 :style="getStyle()">{{message}}</h4>
+</div>
+
+<script src="../js/vue.js">
+</script>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            VueFontSize: 40,
+            VueFinalSize: "30px",
+            message: "Nice to meet you!"
+        },methods : {
+            getStyle : function () {
+                return {fontSize:this.VueFontSize + 'px'}
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
