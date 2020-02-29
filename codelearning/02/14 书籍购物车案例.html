@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <table>
+        <thead>
+        <tr>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item , index) in books">
+            <th>{{item.name}}</th>
+            <th>{{item.date}}</th>
+            <th>{{item.price}}</th>
+            <th>{{item.counter}}</th>
+            <th>
+                <button @click="incre(index)">加一</button>
+                <button @click="sub(index)" v-bind:disabled="item.counter <=1">减一</button>
+                <button @click="del(index)">移除</button>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <h2>总价格：{{totalPrice}}</h2>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            books :
+                [{
+                    id: 100,
+                    name: "家",
+                    date: 1988,
+                    price: 10,
+                    counter: 1
+                }, {
+                    id :101,
+                    name: '春',
+                    date: 1877,
+                    price:20,
+                    counter: 1
+                },{
+                    id: 102,
+                    name: '秋',
+                    date: 1234,
+                    price:30,
+                    counter:1
+                }]
+            },methods:{
+            incre(index){
+                this.books[index].counter ++
+            },
+            sub(index){
+                this.books[index].counter--
+            },del(index){
+                this.books.splice(index,1)
+            }
+        },computed:{
+                totalPrice(){
+                    let totalPrice = 0
+                    for(let i =0;i<this.books.length;i++){
+                        totalPrice += this.books[i].price * this.books[i].counter
+                    }
+                    return totalPrice
+                }
+        }
+    })
+
+</script>
+
+</body>
+</html>
