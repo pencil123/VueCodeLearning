@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc17ddd8-149a-4b4e-a9dd-96b928755dbd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/02/14 书籍购物车案例.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/02/20 v-model 基本使用.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../笔记文档.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../笔记文档.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +60,8 @@
       <workItem from="1582547060834" duration="1693000" />
       <workItem from="1582807973586" duration="239000" />
       <workItem from="1582899996558" duration="3466000" />
-      <workItem from="1582936967251" duration="3795000" />
+      <workItem from="1582936967251" duration="6116000" />
+      <workItem from="1583050287944" duration="2442000" />
     </task>
     <servers />
   </component>
