@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <my-cpn></my-cpn>
+
+</div>
+
+
+<!--模板定义在HTML内容中-->
+<template id="temp2">
+    <div>
+        这是组件模板分离的内容。
+        <h3>{{message}}</h3>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        components:{
+            'my-cpn':{
+                template: '#temp2',
+                data() {
+                    return {
+                        message: "组件中的数据存储位置！"
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

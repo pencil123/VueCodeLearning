@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    // 在Vue实例范围内调用组件-->
+    <cpn></cpn>
+    <my-cpn></my-cpn>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    //1、创建组件构造器
+    const cpn = Vue.extend({
+        template:`<div>组件化构造器</div>`
+    })
+    //2、注册组件（全局注册）
+    Vue.component('cpn',cpn)
+
+    //3、VUE 实例
+    const app = new Vue({
+        el: '#app',
+        data:{},
+        components:{
+            //2、局部注册组件
+            'my-cpn':cpn
+        }
+    })
+
+</script>
+</body>
+</html>
