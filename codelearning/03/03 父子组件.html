@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<parent></parent>
+</div>
+
+<template id="child">
+    <div>子组件内容</div>
+</template>
+
+<!--Vue 的模板template 中只能由一个根元素
+如下:元素都在id为root的DIV中；如果将这个div删除掉，则不符合上面的要求，就会报错！-->
+<template id="parent">
+    <div id="root">
+    <div>父组件内容</div>
+    <child></child>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const child = Vue.extend({
+        template: "#child"
+    })
+    const parent = Vue.extend({
+        template: "#parent",
+        components:{
+            'child':child
+        }
+    })
+    const app = new Vue({
+        el: "#app",
+        components: {
+            'parent': parent
+        }
+    })
+</script>
+</body>
+</html>
