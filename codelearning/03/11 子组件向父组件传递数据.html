@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <cpn @select="cpnClick"></cpn>
+    <h3>{{currentIndex}}</h3>
+</div>
+
+<template id="cpn">
+    <div>
+        <button v-for="(item,index) in titles" @click="itemClick(index)">{{item}}</button>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+const cpn = Vue.extend({
+    template: "#cpn",
+    methods:{
+        itemClick(index){
+            console.log(index)
+            this.$emit('select',index)
+        }
+    },
+    data(){
+        return {
+            titles:['新品','销量','特卖']
+        }
+    }
+})
+    const app = new Vue({
+        el: "#app",
+        data:{
+            currentIndex: 0
+        },
+        components:{
+            'cpn':cpn,
+        },methods:{
+            cpnClick(index){
+                this.currentIndex = index
+            }
+        }
+    })
+</script>
+</body>
+</html>

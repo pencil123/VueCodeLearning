@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    这里是参数间的关系-->
+    <div id="describe">
+        父组件向子组件传递数据，使用props指令；<br/>
+        可以设置数组形式和对象形式；对象形式可以设置更多的内容。
+    </div>
+    <my-cpn :message="message_parent"></my-cpn>
+
+</div>
+<template id="cpn">
+    <div>
+        <h4>cpn 组件中的内容</h4>
+        <h4>{{message}}</h4>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = Vue.extend({
+        template: "#cpn",
+        //这里是形式参数
+        props:['message']
+    })
+
+    const app = new Vue({
+        el: "#app",
+        data:{
+            // 这里是实际参数
+            message_parent: ['数组','测试']
+        },
+        components:{
+            'my-cpn':cpn
+        }
+    })
+
+</script>
+
+</body>
+</html>
