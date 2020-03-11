@@ -1,0 +1,14 @@
+{
+  "name": "webpack02",
+  "version": "1.0.0",
+  "description": "npm create package.json file ;learn webpack",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "webpack"
+  },
+  "keywords": [
+    "helloworld"
+  ],
+  "author": "lyz",
+  "license": "ISC"
+}
