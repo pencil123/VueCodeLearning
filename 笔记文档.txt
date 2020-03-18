@@ -1,125 +1,97 @@
-概念
-
-本质上，webpack 是一个现代 JavaScript 应用程序的【静态模块打包器】(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
-
-从 webpack v4.0.0 开始，可以不用引入一个配置文件。然而，webpack 仍然还是高度可配置的。在开始前你需要先理解四个核心概念：
-
-入口(entry)
-入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始。进入入口起点后，webpack 会找出有哪些模块和库是入口起点（直接和间接）依赖的。
-
-
-输出(output)
-output 属性告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 ./dist。
-
-
-loader
-loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块，然后你就可以利用 webpack 的打包能力，对它们进行处理。
-
-插件(plugins)
-loader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。
-
-
-使用webpack 过程
-1、使用命令打包，定义入口和输出信息。
-2、为webpack创建webpack.config.js配置文件，将入口和输出信息写在配置文件中。
-3、使用npm init 创建package.json 文件，为工程创建NPM配置文件。
-4、将工程描述信息，工程依赖的模块和工程脚本命令等信息写在package.json文件中。
-5、之后就可以使用npm命令进行打包，如果有新模块的话，使用npm install 安装新模块。
-6、在webpack配置文件中设置使用的loader，多个loader结合使用的话，loader使用顺序是从右向左。
+认识路由
+vue-router基本使用
+vue-router嵌套路由
+vue-router参数传递
+vue-router导航守卫
+keep-alive
 
 
 
+前端路由开发的发展过程
 
-webpakc 前端模块化
-目前使用前端模块化开发的一些方案：AMD、CMD、CommonJS、ES6。
-在ES6之前，我们要想进行模块化开发，就必须借助于其他的工具；并且在通过模块化开发完成了项目后，还需要处理模块间的各种依赖，并且将其进行整合打包。
-而webpack其中一个核心就是让我们可能进行模块化开发，并且会帮助我们处理模块间的依赖关系。webpack处理的不仅仅是JavaScript文件，CSS、图片、json文件等在webpack中都可以被当做模块来使用。
+1、后端路由阶段
+早期的网站开发整个HTML页面都是由服务器来渲染的。服务器直接生成渲染好的HTML页面, 返回给客户端进行展示。
 
+一个网站这么多页面，服务器如何处理呢?
+没有页面有自己对应的URL，当URL发送到服务器, 服务器会通过正则对该URL进行匹配, 最后交给一个Controller进行处理。Controller进行各种处理, 最终生成HTML或者数据, 返回给前端。这就完成了一个IO操作（HTTP请求）。这就是后端路由。
 
-什么是打包操作
-打包操作将webpack中的各种资源模块进行打包合并成一个或多个包(Bundle)。并且在打包的过程中，还可以对资源进行处理，比如压缩图片，将scss转成css，将ES6语法转成ES5语法，将TypeScript转成JavaScript等等操作。
-
-
-
-webpack 安装
-安装webpack首先需要安装Node.js，Node.js自带了软件包管理工具npm。
-
-全局安装webpack(这里我先指定版本号3.6.0，因为vue cli2依赖该版本)
-
-局部安装webpack
---save-dev`是开发时依赖，项目打包后不需要继续使用的。
-
-为什么全局安装后，还需要局部安装呢？
-在终端直接执行webpack命令，使用的全局安装的webpack
-当在package.json中定义了scripts时，其中包含了webpack命令，那么使用的是局部webpack
+后端路由的缺点:
+整个页面的模块由后端人员来编写和维护的，HTML代码和数据以及对应的逻辑会混在一起, 编写和维护都是非常糟糕的事情。
 
 
 
+前端路由阶段
+
+前后端分离阶段
+随着Ajax的出现, 有了前后端分离的开发模式。后端只提供API来返回数据, 前端通过Ajax获取数据, 并且可以通过JavaScript将数据渲染到页面中。
+这样做最大的优点就是前后端责任的清晰, 后端专注于数据上, 前端专注于交互和可视化上。并且当移动端(iOS/Android)出现后, 后端不需要进行任何处理, 依然使用之前的一套API。
 
 
-CSS 文件处理
-style-loader 将CSS样式应用到DOM中。
-css-loader  css的加载器，可以在JS文件中使用 import/require 加载CSS文件。
+单页面富应用阶段
+其实SPA（single page web application）最主要的特点就是在前后端分离的基础上加了一层前端路由；也就是前端来维护一套路由规则。
 
-
-图片文件处理
-小图片使用 url-loader 进行处理。
-将小图片转为base64类型显示；并且通过设置limit 属性，设定小于多少的图片使用此loader处理。
-
-大图片使用 file-loader 进行处理。
-大图片会进行移动和重命名；可以通过img,name,hash,ext等属性进行详细设置。
-
-
-将ES6转为ES5的语句
-使用 babel-loader 将ES6转为ES5的语句。
-
-
-
-Vuejs 中 el 和 template 的关系
-
-在之前vuejs学习过程中,编写根组件的代码；我们使用的方式是html页面定义展示的框架，根组件使用el和Dom元素绑定，并提供data数据，
-如果我们需要修改根组件绑定元素的展示框架或者组件新增了展示元素，就需要修改html页面的内容。这种修改html页面内容的方式，是我们不想要的。
-我们可以使用template属性，来解决上面的问题。
-当我们在html页面中创建了一个用于绑定的元素<code>app</code>；我们并不在html页面中设置其他内容。而是通过与此元素绑定Vue实例中设置template属性来定义展示的框架。
-
-原理说明：
-我们知道Vue实例中el属性用于绑定要管理的DOM,这样Vue就可以帮助解析DOM中的指令、事件监听等。如果我们在Vue实例中同时设置template元素，那么template模板的内容就会替换掉绑定的DOM中的内容。
-
-通过在Vue实例（组件）中设置template属性方式开发，可以提高开发效率；后面可以将template、script和style 分开编写，使结构更加清晰。
-
-
-
-
-
-.vue文件封装处理
-
-一个组件以一个js对象的形式进行组织和使用的时候是非常不方便的；一方面编写template模块非常的麻烦，另外一方面如果有样式的话，我们写在哪里比较合适呢？
-现在，我们以一种全新的方式来组织一个vue的组件，通过.vue文件的方式。
-这种特殊的文件以及特殊的格式，必须要安装相应的loader和plugin才能处理。
-npm install vue-loader vue-template-compiler --save-dev
-
-
-
-
-添加版权信息的插件 BannerPlugin
-打包html文件的插件 HtmlWebpackPlugin
-js文件压缩的插件  uglifyjs-webpack-plugin
+前端路由的核心是什么呢？
+改变URL，但是页面不进行整体的刷新。
 
 
 
 
 
 
-搭建本地服务器
+如何实现呢？
 
-webpack提供了一个可选的本地开发服务器，这个本地服务器基于node.js搭建，内部使用express框架，可以实现我们想要的让浏览器自动刷新显示我们修改后的结果。
-不过它是一个单独的模块，在webpack中使用之前需要先安装它
 
-devserver也是作为webpack中的一个选项，选项本身可以设置如下属性：
-contentBase：为哪一个文件夹提供本地服务，默认是根文件夹，我们这里要填写./dist
-port：端口号
-inline：页面实时刷新
-historyApiFallback：在SPA页面中，依赖HTML5的history模式
-webpack.config.js文件配置修改如下：
-我们可以再配置另外一个scripts：
---open参数表示直接打开浏览器
+
+URL的hash
+URL的hash也就是锚点(#), 本质上是改变window.location的href属性.
+我们可以通过直接赋值location.hash来改变href, 但是页面不发生刷新
+
+
+
+HTML5的history模式：pushState
+history接口是HTML5新增的, 它有五种模式改变URL而不刷新页面.
+history.pushState()
+HTML5的history模式：replaceState
+HTML5的history模式：go
+
+补充说明：
+上面只演示了三个方法
+因为 history.back() 等价于 history.go(-1)
+history.forward() 则等价于 history.go(1)
+这三个接口等同于浏览器界面的前进后退。
+
+
+认识vue-router
+
+目前前端流行的三大框架, 都有自己的路由实现:
+Angular的ngRouter
+React的ReactRouter
+Vue的vue-router
+
+当然, 我们的重点是vue-router
+vue-router是Vue.js官方的路由插件，它和vue.js是深度集成的，适合用于构建单页面应用。
+我们可以访问其官方网站对其进行学习: https://router.vuejs.org/zh/
+vue-router是基于路由和组件的
+路由用于设定访问路径, 将路径和组件映射起来.
+在vue-router的单页面应用中, 页面的路径的改变就是组件的切换.
+
+
+
+
+安装和使用vue-router
+因为我们已经学习了webpack, 后续开发中我们主要是通过工程化的方式进行开发的.
+所以在后续, 我们直接使用npm来安装路由即可.
+步骤一: 安装vue-router
+npm install vue-router --save
+步骤二: 在模块化工程中使用它(因为是一个插件, 所以可以通过Vue.use()来安装路由功能)
+第一步：导入路由对象，并且调用 Vue.use(VueRouter)
+第二步：创建路由实例，并且传入路由映射配置
+第三步：在Vue实例中挂载创建的路由实例
+使用vue-router的步骤:
+第一步: 创建路由组件
+第二步: 配置路由映射: 组件和路径映射关系
+第三步: 使用路由: 通过<router-link>和<router-view>
+
+
+
+
